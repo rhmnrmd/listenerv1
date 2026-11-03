@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.GarryPedia" parent="Theme.GarryPedia.Base">
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>

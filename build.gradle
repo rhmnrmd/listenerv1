@@ -1,0 +1,36 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Konfigurasi bawaan (URL server dan secret) dibaca dari gateway.properties di folder utama proyek.
+def gw = new Properties()
+def gwFile = rootProject.file('gateway.properties')
+if (gwFile.exists()) { gwFile.withInputStream { gw.load(it) } }
+def q = { String v -> '"' + v.replace('\\', '\\\\').replace('"', '\\"') + '"' }
+
+android {
+    namespace 'id.garrypedia.listener'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId 'id.garrypedia.listener'
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName '1.0.0'
+        buildConfigField 'String', 'DEFAULT_URL', q(gw.getProperty('GATEWAY_URL', 'https://paygarry.paduka.my.id').trim())
+        buildConfigField 'String', 'DEFAULT_SECRET', q(gw.getProperty('NOTIFY_SECRET', '').trim())
+    }
+
+    buildFeatures { buildConfig true }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.work:work-runtime:2.9.0'
+}

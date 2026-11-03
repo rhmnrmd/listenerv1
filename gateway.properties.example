@@ -1,0 +1,4 @@
+# Salin menjadi gateway.properties (jangan di-commit). Isi sebelum build.
+GATEWAY_URL=https://paygarry.paduka.my.id
+# Salin dari dashboard admin, bagian Setelan (notify secret)
+NOTIFY_SECRET=
